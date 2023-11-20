@@ -4,21 +4,22 @@ import { useNavigate } from "react-router-dom";
 import { Toaster, toast } from "sonner";
 import axios from "axios";
 import { setUser } from "../store/slices/user.slice";
-
+import apiLogin from "../api/apiLogin";
 
 function Login() {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const url = apiLogin()
  
   const { register, handleSubmit } = useForm();
 
   const login = (data) => {
-    axios.post("http://localhost:8000/login", data)
+    axios.post(`${url}`, data)
       .then(res => { 
-     
         dispatch(setUser(res.data))
-        localStorage.getItem("token")
+        localStorage.setItem("token",res.data.token)
         toast.success("terminos aceptados");
         setTimeout(() => {
           navigate("/home");

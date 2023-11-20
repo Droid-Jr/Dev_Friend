@@ -4,7 +4,7 @@ import useSidebar from "../../../hook/useSidebar";
 
 function Sidebar() {
   const user = useSelector((state) => state.user);
-
+console.log(user)
   const [Open, changeOpen] = useSidebar();
 
   const variants = {
