@@ -3,7 +3,7 @@ import React from 'react'
 function ContentHome() {
   return (
     <section className='bg-[#4E5163] ml-[300px] h-screen  transition-all duration-300 max-[1050px]:ml-0 relative ' >
-       <article className=' h-[100%] grid place-items-center py-24'>
+       <article className=' h-[100%] grid place-items-center  place-content-center gap-5'>
        <article className=''>
         <img src="/logo.png" alt="logo" />
       </article>
