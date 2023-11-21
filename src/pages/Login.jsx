@@ -32,7 +32,7 @@ function Login() {
 
   
   return (
-    <section className=" w-[100%] md:w-[87.5em] h-screen   grid place-items-center lg:flex">
+    <section className=" bg-[black] w-[100%]  h-screen   grid place-items-center lg:flex">
       <article className="w-[50%] h-[100%] hidden lg:grid lg:place-content-center ">
         <img
           src="/login/fondo.png"

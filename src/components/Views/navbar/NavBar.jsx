@@ -13,7 +13,7 @@ function NavBar() {
         }, 1200);
     }
   return (
-    <nav className='w-[100%] h-[100px] bg-[#4E5163] flex justify-between sm:justify-around items-center'>
+    <nav className='bg-[#2B3146] fixed z-10 flex justify-around  items-center w-[100%] h-[100px] border-b-[3px] border-[#636b85]'>
       <Link to={"/home"}>
         <img src="/logo.png" alt="logo" className='w-[190px] h-[80px] lg:w-[200px]  drop-shadow-[0px_0px_1px_#FF00DA]' />
       </Link>

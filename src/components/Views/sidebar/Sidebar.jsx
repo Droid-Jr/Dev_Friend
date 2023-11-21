@@ -1,79 +1,118 @@
 import { useSelector } from "react-redux";
-import { AnimatePresence, motion } from "framer-motion";
-import useSidebar from "../../../hook/useSidebar";
+import useFundamentos from '../../../hook/useFundamentos'
+import { Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
+import useRutas from '../../../hook/useRutas'
 
 function Sidebar() {
   const user = useSelector((state) => state.user);
-console.log(user)
-  const [Open, changeOpen] = useSidebar();
+  const navigate = useNavigate()
 
-  const variants = {
-    visible: { opacity: 1, x: 0, transition: { duration: 0.4 } },
-    hidden: { opacity: 0, x: -500, transition: { duration: 0.4 } },
+ 
+
+
+  const [Rutas , changeRutas] = useRutas();
+
+  const [fundamentos , changeFundamentos] = useFundamentos();
+
+ 
+
+const navegar = () => {
+  navigate("/home")
+}
+
+
+
+
+ 
+
+  const [open, setOpen] = useState(true);
+
+  const opens = () => {
+    setOpen(!open);
   };
 
+ 
+
   return (
-    <section className="w-[330px] h-[89%] bg-[#2B3146] flex flex-col border-t border-[#393c4b]">
-      <article className="w-[100%] h-[240px]   grid place-content-center place-items-center ">
-        <img src="/sidebar/profile.png" alt="logoProfile" />
-        <h2 className="font-kenia text-[#57A3E1] text-[36px]">
-          {user.username} {user.lastname}
-        </h2>
-      </article>
+    <>
+    {open ? (
+      <i onClick={opens} className="fa-solid fa-bars open"></i>
+    ) : (
+      <i onClick={opens} className="fa-sharp fa-solid fa-xmark cerrar"></i>
+    )}
+    <aside
+      className={`sidebar  ${
+        open ? "max-[1050px]:left-[-300px]" : "max-[1050px]:left-[0px] "
+      } `}
+    >
+      <section className="sidebar_section ">
+        <img
+        onClick={navegar}
+          className="cursor-pointer rounded-full w-[100px] h-[100px] border-[#555c77]  border-[2px] p-1"
+          src="/login/fondo.png"
+          alt="logo"
+          loading="true"
+        />
+        <h2 className="font-work text-[#57A3E1] leading-[23px] font-kenia text-[36px]">{user.username} {user.lastname}</h2>
+      </section>
 
-      <ul className="w-[100%] h-[100%] flex flex-col gap-6">
-        <motion.li
-          onClick={changeOpen}
-          className="w-[100%] h-[78px] bg-[#4E5163] flex items-center justify-center gap-5 cursor-pointer"
-        >
-          <img src="/sidebar/rutas.png" alt="logoDeRutas" />
-          <h3 className="text-[36px] font-kenia text-[#57A3E1]">Rutas</h3>
-        </motion.li>
+      <section className="w-[100%] h-[80%] py-5 bg-[#2B3146] overflow-x-auto  mt-3 ">
 
-        <AnimatePresence>
-          {Open && (
-            <>
-              <motion.li
-                className="w-[100%] h-[78px] bg-[#4E5163] flex items-center justify-center gap-5 cursor-pointer"
-                initial="hidden"
-                animate="visible"
-                exit="hidden"
-                variants={variants}
-              >
-                <img src="/sidebar/fundamentos.png" alt="logoDeRutas" />
-                <h3 className="text-[36px] font-kenia text-[#57A3E1]">
-                  Fundamentos
-                </h3>
-              </motion.li>
+        <article onClick={changeRutas}  className="cursor-pointer w-[95%] m-auto h-[78px] bg-[#4E5163] flex items-center justify-center gap-5">
+          <img   src="/sidebar/rutas.png" alt="logo" />
+          <h2  className="text-[36px] text-[#57A3E1] font-kenia">Rutas</h2>
+        </article>
+         
+         {
+          Rutas && <ul className="w-[100%]  py-5 bg-[#2B3146] flex flex-col items-center gap-5">
 
-              <motion.li
-                className="w-[100%] h-[78px] bg-[#4E5163] flex items-center justify-center gap-5 cursor-pointer"
-                initial="hidden"
-                animate="visible"
-                exit="hidden"
-                variants={variants}
-              >
-                <img src="/sidebar/react.png" alt="logoDeRutas" />
-                <h3 className="text-[36px] font-kenia text-[#57A3E1]">React</h3>
-              </motion.li>
+            <li onClick={changeFundamentos}  className="cursor-pointer w-[90%] h-[78px] bg-[#4E5163]  flex items-center justify-center gap-5">
+              <img  src="/sidebar/fundamentos.png" alt="logo" />
+              <h3 className="font-kenia text-[#57A3E1] text-[32px]">Fundamentos</h3>
+            </li>
+            {
+              fundamentos && <div className="w-[100%]   flex flex-col items-center gap-5">
 
-              <motion.li
-                className="w-[100%] h-[78px] bg-[#4E5163] flex items-center justify-center gap-5 cursor-pointer"
-                initial="hidden"
-                animate="visible"
-                exit="hidden"
-                variants={variants}
-              >
-                <img src="/sidebar/nodejs.png" alt="logoDeRutas" />
-                <h3 className="text-[36px] font-kenia text-[#57A3E1]">
-                  Node Js
-                </h3>
-              </motion.li>
-            </>
-          )}
-        </AnimatePresence>
-      </ul>
-    </section>
+            <Link 
+            to={"/html"}
+            className="w-[70%] h-[78px] bg-[#4E5163]  flex items-center justify-center gap-5">
+              <img src="/sidebar/html.png" alt="logo" />
+              <h3 className="font-kenia text-[#57A3E1] text-[32px]">HTML</h3>
+            </Link>
+
+            <Link className="w-[70%] h-[78px] bg-[#4E5163]  flex items-center justify-center gap-5">
+              <img src="/sidebar/html.png" alt="logo" />
+              <h3 className="font-kenia text-[#57A3E1] text-[32px]">CSS</h3>
+            </Link>
+
+            <Link className="w-[70%] h-[78px] bg-[#4E5163]  flex items-center justify-center gap-5">
+              <img src="/sidebar/nodejs.png" alt="logo" />
+              <h3 className="font-kenia text-[#57A3E1] text-[32px]">JavaScript</h3>
+            </Link>
+
+
+
+              </div>
+            }
+            <li className="cursor-pointer w-[90%] h-[78px] bg-[#4E5163]  flex items-center justify-center gap-5">
+              <img src="/sidebar/react.png" alt="logo" />
+              <h3 className="font-kenia text-[#57A3E1] text-[32px]">React</h3>
+            </li>
+
+            <li className="cursor-pointer w-[90%] h-[78px] bg-[#4E5163]  flex items-center justify-center gap-5">
+              <img src="/sidebar/nodejs.png" alt="logo" />
+              <h3 className="font-kenia text-[#57A3E1] text-[32px]">Node Js</h3>
+            </li>
+
+           
+           
+          </ul>
+         }
+        
+      </section>
+    </aside>
+  </>
   );
 }
 

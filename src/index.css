@@ -2,5 +2,37 @@
 @tailwind components;
 @tailwind utilities;
 
+::-webkit-scrollbar {
+    width: 10px;
+}
+  
+/* Track */
+::-webkit-scrollbar-track {
+    background:transparent;
+    border-radius: 5px;
+}
+  
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: transparent;
+    border-radius: 5px;
+}
+
+.open {
+    @apply w-10 h-10 rounded-full text-xl bg-[#343744] fixed top-28 right-3 leading-[42px] text-[white] text-center lg:hidden max-[1050px]:block z-50 cursor-pointer
+}
+
+.cerrar {
+    @apply w-10 h-10 rounded-full text-xl bg-[#343744] fixed top-28 right-3 leading-[42px] text-[white] text-center lg:hidden max-[1050px]:block   z-50 cursor-pointer
+}
+
+/* sidebar */
+
+.sidebar {
+    @apply h-[95vh] bg-[#2B3146]  w-[300px] fixed top-[100px] left-0 bottom-0  z-40 transition-all duration-500 overflow-y-auto flex flex-col items-center
+}
 
 
+.sidebar_section {
+    @apply w-[90%] bg-[#2B3146] grid place-items-center h-[140px] mt-3 gap-1
+}

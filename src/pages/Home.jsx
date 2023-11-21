@@ -1,12 +1,16 @@
+import ContentHome from "../components/Views/contenido/ContentHome"
 import NavBar from "../components/Views/navbar/NavBar"
 import Sidebar from "../components/Views/sidebar/Sidebar"
 
 
 function Home() {
   return (
-    <div className="w-[100%] h-[100vh] ">
+    <div className="relative  ">
       <NavBar/>
+      
       <Sidebar/>
+      <ContentHome/>
+      
     </div>
   )
 }
